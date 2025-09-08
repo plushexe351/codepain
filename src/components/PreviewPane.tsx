@@ -10,11 +10,11 @@ const PreviewPane: React.FC<Props> = ({ html, css, js }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    const doc = iframeRef.current?.contentDocument;
-    if (!doc) return;
-    doc.open();
-    doc.write(`
-      <!DOCTYPE html>
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+
+    // Use srcdoc and make the script a module so import/export works
+    iframe.srcdoc = `<!DOCTYPE html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
@@ -22,11 +22,11 @@ const PreviewPane: React.FC<Props> = ({ html, css, js }) => {
       </head>
       <body>
         ${html}
-        <script>${js}<\/script>
+        <script type="module">
+          ${js}
+        </script>
       </body>
-      </html>
-    `);
-    doc.close();
+      </html>`;
   }, [html, css, js]);
 
   return <iframe ref={iframeRef} className="preview-pane" />;

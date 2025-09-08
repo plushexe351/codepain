@@ -1,5 +1,6 @@
 import React from "react";
 import { saveAs } from "file-saver";
+import JSZip from "jszip";
 
 interface Props {
   html: string;
@@ -8,10 +9,12 @@ interface Props {
 }
 
 const ExportButton: React.FC<Props> = ({ html, css, js }) => {
-  const handleExport = () => {
-    const blobHtml = new Blob(
-      [
-        `<!DOCTYPE html>
+  const handleExport = async () => {
+    const zip = new JSZip();
+
+    zip.file(
+      "index.html",
+      `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -21,17 +24,15 @@ const ExportButton: React.FC<Props> = ({ html, css, js }) => {
   ${html}
   <script src="script.js"></script>
 </body>
-</html>`,
-      ],
-      { type: "text/html;charset=utf-8" }
+</html>`
     );
 
-    const blobCss = new Blob([css], { type: "text/css;charset=utf-8" });
-    const blobJs = new Blob([js], { type: "text/javascript;charset=utf-8" });
+    zip.file("style.css", css);
+    zip.file("script.js", js);
 
-    saveAs(blobHtml, "index.html");
-    saveAs(blobCss, "style.css");
-    saveAs(blobJs, "script.js");
+    const content = await zip.generateAsync({ type: "blob" });
+
+    saveAs(content, "code-export.zip");
   };
 
   return <button onClick={handleExport}>Export Code</button>;
