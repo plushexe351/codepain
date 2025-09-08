@@ -1,5 +1,6 @@
 import React from "react";
 import Editor, { type OnChange } from "@monaco-editor/react";
+import { ClipLoader } from "react-spinners";
 
 interface Props {
   language: "html" | "css" | "javascript";
@@ -27,6 +28,11 @@ const EditorPane: React.FC<Props> = ({ language, value, onChange }) => {
           wordWrap: "on",
           automaticLayout: true,
         }}
+        loading={
+          <div className="loader-container">
+            <ClipLoader color="#ff79c6" size={20} />
+          </div>
+        }
       />
     </div>
   );
