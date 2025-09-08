@@ -46,6 +46,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
+  if (!user) return res.status(404).json({ message: "User not found" });
   res.json(user);
 });
 
@@ -58,17 +59,9 @@ const getUserByUsername = asyncHandler(async (req, res) => {
   res.json(user);
 });
 
-// get user by id
-const getUserById = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select("-password");
-  if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
-});
-
 export default {
   getUser,
   loginUser,
   registerUser,
-  getUserById,
   getUserByUsername,
 };

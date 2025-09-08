@@ -2,9 +2,8 @@ import express from "express";
 import {
   registerUser,
   loginUser,
-  getCurrentUser,
+  getUser,
   getUserByUsername,
-  getUserById,
 } from "../controllers/authController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
@@ -14,11 +13,10 @@ const router = express.Router();
 
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/me", protect, getCurrentUser);
+router.get("/me", protect, getUser);
 
 // public profile
 
 router.get("/u/:username", getUserByUsername);
-router.get("/id/:id", getUserById);
 
 export default router;
