@@ -17,7 +17,8 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-resizable-panels": "^3.0.5",
-    "react-spinners": "^0.17.0"
+    "react-spinners": "^0.17.0",
+    "sass": "^1.92.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",

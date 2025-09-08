@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Panel, PanelGroup } from "react-resizable-panels";
 import EditorPane from "./components/EditorPane";
 import PreviewPane from "./components/PreviewPane";
-import "./App.css";
+import "./App.scss";
 import ResizeHandle from "./components/ResizeHandle";
 import MenuBar from "./components/MenuBar";
 
@@ -13,18 +13,13 @@ function App() {
 
   return (
     <div className="app">
-      {/* Vertical split: Editors on top, Preview below */}
       <MenuBar html={html} css={css} js={js} />
-      {/* <div style={{ padding: "5px" }}>
-        <ExportButton html={html} css={css} js={js} />
-      </div> */}
       <PanelGroup
         direction="vertical"
         autoSaveId="main-vertical"
         className="panel-group-vertical"
       >
         <Panel defaultSize={50}>
-          {/* Horizontal split for HTML / CSS / JS editors */}
           <PanelGroup
             direction="horizontal"
             autoSaveId="editor-horizontal"
