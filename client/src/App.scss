@@ -1,14 +1,16 @@
-* {
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .app {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: "Courier New", Courier, monospace;
 }
 
 :root {
@@ -26,79 +28,4 @@ html {
 .panel-group-vertical,
 .panel-group-horizontal {
   height: 100%;
-}
-
-.editor-pane {
-  height: 100%;
-}
-
-.editor-pane h3 {
-  margin: 0;
-  padding: 0.5rem;
-  font-size: 14px;
-  background: var(--color-bg);
-  color: var(--color-accent);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  .editor-icon {
-    width: 20px;
-    aspect-ratio: 1/1;
-  }
-}
-
-.preview-pane {
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: var(--color-white);
-}
-
-button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  background: var(--color-accent);
-  color: var(--color-white);
-  cursor: pointer;
-}
-
-.resize-outer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.3rem;
-}
-
-.menubar {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  height: 60px;
-  border-bottom: 1px solid var(--color-border-primary);
-  background-color: var(--color-bg-dark);
-  .logo {
-    color: var(--color-white);
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    .logo-img {
-      height: 35px;
-      aspect-ratio: 1/1;
-      object-fit: cover;
-    }
-    span {
-      color: var(--color-accent);
-    }
-  }
-}
-
-.loader-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Panel, PanelGroup } from "react-resizable-panels";
-import EditorPane from "./components/EditorPane";
-import PreviewPane from "./components/PreviewPane";
+import EditorPane from "./components/EditorPane/EditorPane";
+import PreviewPane from "./components/PreviewPane/PreviewPane";
 import "./App.scss";
-import ResizeHandle from "./components/ResizeHandle";
-import MenuBar from "./components/MenuBar";
+import ResizeHandle from "./components/ResizeHandle/ResizeHandle";
+import MenuBar from "./components/MenuBar/MenuBar";
 
 function App() {
   const [html, setHtml] = useState("");

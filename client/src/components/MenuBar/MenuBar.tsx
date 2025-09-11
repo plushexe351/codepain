@@ -1,6 +1,7 @@
 import type React from "react";
-import ExportButton from "./ExportButton";
-import logo from "../assets/logo.png";
+import ExportButton from "../ExportButton/ExportButton";
+import logo from "../../assets/logo.png";
+import "./MenuBar.scss";
 
 interface Props {
   html: string;

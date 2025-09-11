@@ -1,6 +1,7 @@
 import React from "react";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
+import "./ExportButton.scss";
 
 interface Props {
   html: string;

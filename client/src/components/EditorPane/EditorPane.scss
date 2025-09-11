@@ -1,0 +1,23 @@
+.editor-pane {
+  height: 100%;
+  h3 {
+    margin: 0;
+    padding: 0.5rem;
+    font-size: 14px;
+    background: var(--color-bg);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .editor-icon {
+      width: 20px;
+      aspect-ratio: 1/1;
+    }
+  }
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
