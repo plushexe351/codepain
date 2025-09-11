@@ -6,7 +6,7 @@ import {
   getUserByUsername,
   userLogout,
 } from "../controllers/authController.js";
-import { protect } from "../middleware/authMiddleware.js";
+import { protect } from "../middleware/authHandler.js";
 
 const authRoutes = express.Router();
 
