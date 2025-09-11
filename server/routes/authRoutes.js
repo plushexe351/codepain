@@ -8,17 +8,17 @@ import {
 } from "../controllers/authController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
-const router = express.Router();
+const authRoutes = express.Router();
 
-// auth routes
+// @permission_classes([AllowAny])
 
-router.post("/register", registerUser);
-router.post("/login", loginUser);
-router.post("/logout", userLogout);
-router.get("/me", protect, getUser);
+authRoutes.get("/me", protect, getUser);
+authRoutes.post("/register", registerUser);
+authRoutes.post("/login", loginUser);
+authRoutes.post("/logout", userLogout);
 
-// public profile
+// @permission_classes([IsAuthenticated])
 
 router.get("/u/:username", getUserByUsername);
 
-export default router;
+export { authRoutes };
