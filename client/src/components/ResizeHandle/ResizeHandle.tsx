@@ -1,5 +1,6 @@
 import { Split } from "lucide-react";
 import { PanelResizeHandle } from "react-resizable-panels";
+import "./ResizeHandle.scss";
 
 const ResizeHandle = () => {
   return (

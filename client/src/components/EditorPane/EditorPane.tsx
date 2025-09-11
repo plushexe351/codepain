@@ -1,6 +1,7 @@
 import React from "react";
 import Editor from "@monaco-editor/react";
 import { ClipLoader } from "react-spinners";
+import "./EditorPane.scss";
 
 const editorIcons = [
   {

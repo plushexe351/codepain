@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import "./PreviewPane.scss";
 
 interface Props {
   html: string;
