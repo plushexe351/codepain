@@ -1,4 +1,5 @@
 import express from "express";
+import { protect } from "../middlewares/authHandler.js";
 import {
   registerUser,
   loginUser,
@@ -6,7 +7,6 @@ import {
   getUserByUsername,
   userLogout,
 } from "../controllers/authController.js";
-import { protect } from "../middlewares/authHandler.js";
 
 const authRoutes = express.Router();
 
@@ -19,6 +19,6 @@ authRoutes.post("/logout", userLogout);
 
 // @permission_classes([IsAuthenticated])
 
-router.get("/u/:username", getUserByUsername);
+authRoutes.get("/u/:username", getUserByUsername);
 
 export { authRoutes };

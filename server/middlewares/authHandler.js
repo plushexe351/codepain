@@ -1,4 +1,6 @@
 import jwt from "jsonwebtoken";
+import { asyncHandler } from "./asyncHandler.js";
+import { User } from "../models/User.js";
 
 const protect = asyncHandler(async (req, res, next) => {
   const token = req.cookies.jwt;
@@ -12,3 +14,5 @@ const protect = asyncHandler(async (req, res, next) => {
     res.status(401).json({ message: "Invalid token" });
   }
 });
+
+export { protect };

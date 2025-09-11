@@ -1,7 +1,6 @@
-import User from "../models/User.js";
-import jwt from "jsonwebtoken";
+import { User } from "../models/User.js";
 import bcrypt from "bcryptjs";
-import asyncHandler from "../middlewares/asyncHandler.js";
+import { asyncHandler } from "../middlewares/asyncHandler.js";
 import generateToken from "../utils/generateToken.js";
 
 //user registration
@@ -63,16 +62,10 @@ const userLogout = asyncHandler((req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
+    sameSite: process.env.NODE_ENV === "development" ? "lax" : "strict",
     expires: new Date(0),
   });
   res.status(200).json({ message: "User has been logged out" });
 });
 
-export default {
-  getUser,
-  loginUser,
-  registerUser,
-  getUserByUsername,
-  userLogout,
-};
+export { getUser, loginUser, registerUser, getUserByUsername, userLogout };
