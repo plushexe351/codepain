@@ -5,6 +5,8 @@ import PreviewPane from "./components/PreviewPane/PreviewPane";
 import "./App.scss";
 import ResizeHandle from "./components/ResizeHandle/ResizeHandle";
 import MenuBar from "./components/MenuBar/MenuBar";
+import theme from "./config/theme";
+import { ThemeProvider } from "@mui/material";
 
 function App() {
   const [html, setHtml] = useState("");
@@ -12,40 +14,42 @@ function App() {
   const [js, setJs] = useState("");
 
   return (
-    <div className="app">
-      <MenuBar html={html} css={css} js={js} />
-      <PanelGroup
-        direction="vertical"
-        autoSaveId="main-vertical"
-        className="panel-group-vertical"
-      >
-        <Panel defaultSize={50}>
-          <PanelGroup
-            direction="horizontal"
-            autoSaveId="editor-horizontal"
-            className="panel-group-horizontal"
-          >
-            <Panel minSize={20} defaultSize={33}>
-              <EditorPane language="html" value={html} onChange={setHtml} />
-            </Panel>
-            <ResizeHandle />
-            <Panel minSize={20} defaultSize={33}>
-              <EditorPane language="css" value={css} onChange={setCss} />
-            </Panel>
-            <ResizeHandle />
+    <ThemeProvider theme={theme}>
+      <div className="app">
+        <MenuBar html={html} css={css} js={js} />
+        <PanelGroup
+          direction="vertical"
+          autoSaveId="main-vertical"
+          className="panel-group-vertical"
+        >
+          <Panel defaultSize={50}>
+            <PanelGroup
+              direction="horizontal"
+              autoSaveId="editor-horizontal"
+              className="panel-group-horizontal"
+            >
+              <Panel minSize={20} defaultSize={33}>
+                <EditorPane language="html" value={html} onChange={setHtml} />
+              </Panel>
+              <ResizeHandle />
+              <Panel minSize={20} defaultSize={33}>
+                <EditorPane language="css" value={css} onChange={setCss} />
+              </Panel>
+              <ResizeHandle />
 
-            <Panel minSize={20} defaultSize={33}>
-              <EditorPane language="javascript" value={js} onChange={setJs} />
-            </Panel>
-          </PanelGroup>
-        </Panel>
-        <ResizeHandle />
+              <Panel minSize={20} defaultSize={33}>
+                <EditorPane language="javascript" value={js} onChange={setJs} />
+              </Panel>
+            </PanelGroup>
+          </Panel>
+          <ResizeHandle />
 
-        <Panel defaultSize={50}>
-          <PreviewPane html={html} css={css} js={js} />
-        </Panel>
-      </PanelGroup>
-    </div>
+          <Panel defaultSize={50}>
+            <PreviewPane html={html} css={css} js={js} />
+          </Panel>
+        </PanelGroup>
+      </div>
+    </ThemeProvider>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
-import "./ExportButton.scss";
+import { Button } from "@mui/material";
 
 interface Props {
   html: string;
@@ -36,7 +36,11 @@ const ExportButton: React.FC<Props> = ({ html, css, js }) => {
     saveAs(content, "code-export.zip");
   };
 
-  return <button onClick={handleExport}>Export Code</button>;
+  return (
+    <Button variant="contained" onClick={handleExport}>
+      Export Code
+    </Button>
+  );
 };
 
 export default ExportButton;
