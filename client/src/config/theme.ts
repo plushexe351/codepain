@@ -3,10 +3,10 @@ import { createTheme } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ff79c6',   // main pink shade
-      light: '#ffa1dc',  // lighter tint
-      dark: '#c74f96',   // darker tone
-      contrastText: '#fff', // white text for accessibility
+      main: '#ff79c6',   
+      light: '#ffa1dc',  
+      dark: '#c74f96',   
+      contrastText: '#fff', 
     },
     secondary: {
       main: "#0d47a1",
