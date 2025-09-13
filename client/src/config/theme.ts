@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { type Palette, type PaletteOptions } from "@mui/material/styles";
+// import { type Palette, type PaletteOptions } from "@mui/material/styles";
 
 declare module "@mui/material/styles" {
   interface Palette {
@@ -15,7 +15,6 @@ declare module "@mui/material/Button" {
     lightWhite: true;
   }
 }
-
 
 const theme = createTheme({
   palette: {
