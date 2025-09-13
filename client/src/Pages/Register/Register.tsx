@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as styles from "../../styles/AuthStyles";
+import * as styles from "../../styles/authStyles";
 import {
   Box,
   Button,
