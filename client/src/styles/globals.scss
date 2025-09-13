@@ -12,6 +12,7 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  // transition: 0.2s ease;
 }
 
 :root {
@@ -24,9 +25,4 @@
 
 html {
   background-color: var(--color-bg);
-}
-
-.panel-group-vertical,
-.panel-group-horizontal {
-  height: 100%;
 }
