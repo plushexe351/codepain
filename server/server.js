@@ -5,6 +5,7 @@ import ExpressMongoSanitize from "express-mongo-sanitize";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { authRoutes } from "./routes/authRoutes.js";
+import helmet, { contentSecurityPolicy } from "helmet";
 
 dotenv.config();
 connectDB();
@@ -14,6 +15,10 @@ const app = express();
 // middleware
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(
+  helmet({ contentSecurityPolicy: process.env.NODE_ENV === "production" })
+);
 
 app.use(
   cors({

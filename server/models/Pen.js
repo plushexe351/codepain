@@ -11,4 +11,4 @@ const penSchema = new mongoose.Schema(
 );
 
 const Pen = mongoose.model("Pen", penSchema);
-export default Pen;
+export { Pen };

@@ -2,11 +2,20 @@ import { User } from "../models/User.js";
 import bcrypt from "bcryptjs";
 import { asyncHandler } from "../middlewares/asyncHandler.js";
 import generateToken from "../utils/generateToken.js";
+import { validateEmail } from "../utils/validateEmail.js";
+
+//-------------------------------------------------------------------------------------------------------------
 
 //user registration
-
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
+
+  //email validation
+  const emailLowered = email.toLowerCase();
+  if (!validateEmail(emailLowered))
+    return res.status(400).json({ message: "Invalid email format" });
+
+  //checking for existing user
   const existingUser = await User.findOne({ email });
   if (existingUser)
     return res.status(409).json({ message: "User already exists" });
@@ -16,9 +25,9 @@ const registerUser = asyncHandler(async (req, res) => {
   const token = generateToken(res, user._id);
   res.status(200).json({ user: { id: user._id, username, email }, token });
 });
+//----------------------------------------------------------------------------------------------------------
 
 // user login
-
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
 
@@ -38,14 +47,15 @@ const loginUser = asyncHandler(async (req, res) => {
     token,
   });
 });
+//----------------------------------------------------------------------------------------------------------------
 
 //getting user
-
 const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
   if (!user) return res.status(404).json({ message: "User not found" });
   res.json(user);
 });
+//----------------------------------------------------------------------------------------------------------------
 
 // get user by username
 const getUserByUsername = asyncHandler(async (req, res) => {
@@ -55,9 +65,9 @@ const getUserByUsername = asyncHandler(async (req, res) => {
   if (!user) return res.status(404).json({ message: "User not found" });
   res.json(user);
 });
+//-------------------------------------------------------------------------------------------------------------------
 
 // logout
-
 const userLogout = asyncHandler((req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
@@ -67,5 +77,6 @@ const userLogout = asyncHandler((req, res) => {
   });
   res.status(200).json({ message: "User has been logged out" });
 });
+//------------------------------------------------------------------------------------------------------------------------
 
 export { getUser, loginUser, registerUser, getUserByUsername, userLogout };
