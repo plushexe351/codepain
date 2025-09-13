@@ -16,11 +16,9 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(helmet()); // for prod
-
-// app.use(
-//   helmet({ contentSecurityPolicy: process.env.NODE_ENV === "production" })
-// ); // for dev
+app.use(
+  helmet({ contentSecurityPolicy: process.env.NODE_ENV === "production" })
+);
 
 app.use(
   cors({
