@@ -1,14 +1,13 @@
 .editor-pane {
   height: 100%;
-  h3 {
+  .editor-pane--heading {
     margin: 0;
-    padding: 0.5rem;
-    font-size: 14px;
+    padding: 0.5rem 7.5px;
     background: var(--color-bg);
     color: var(--color-accent);
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 7.5px;
 
     .editor-icon {
       width: 20px;

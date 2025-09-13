@@ -2,6 +2,7 @@ import React from "react";
 import Editor from "@monaco-editor/react";
 import { ClipLoader } from "react-spinners";
 import "./EditorPane.scss";
+import { Typography } from "@mui/material";
 
 const editorIcons = [
   {
@@ -33,12 +34,15 @@ const EditorPane: React.FC<Props> = ({ language, value, onChange }) => {
 
   return (
     <div className="editor-pane">
-      <h3>
+      <Typography
+        className="editor-pane--heading"
+        sx={{ fontSize: 12, fontWeight: 600 }}
+      >
         {filteredIcon && (
           <img src={filteredIcon} alt={language} className="editor-icon" />
         )}
         {language.toUpperCase()}
-      </h3>
+      </Typography>
       <Editor
         height="100%"
         language={language}
