@@ -1,54 +1,37 @@
-import { useState } from "react";
-import { Panel, PanelGroup } from "react-resizable-panels";
-import EditorPane from "./components/EditorPane/EditorPane";
-import PreviewPane from "./components/PreviewPane/PreviewPane";
-import "./App.scss";
-import ResizeHandle from "./components/ResizeHandle/ResizeHandle";
-import MenuBar from "./components/MenuBar/MenuBar";
+import { lazy, Suspense } from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import { Routes, Route, Navigate } from "react-router";
 import theme from "./config/theme";
-import { ThemeProvider } from "@mui/material";
+import ProtectedRoute from "./components/protectedRoute";
+import "./styles/globals.scss";
+import AppLoader from "./components/AppLoader/AppLoader";
+
+const Playground = lazy(() => import("./Pages/Playground/Playground"));
+const Login = lazy(() => import("./Pages/Login/Login"));
+const Register = lazy(() => import("./Pages/Register/Register"));
 
 function App() {
-  const [html, setHtml] = useState("");
-  const [css, setCss] = useState("");
-  const [js, setJs] = useState("");
-
   return (
     <ThemeProvider theme={theme}>
-      <div className="app">
-        <MenuBar html={html} css={css} js={js} />
-        <PanelGroup
-          direction="vertical"
-          autoSaveId="main-vertical"
-          className="panel-group-vertical"
-        >
-          <Panel defaultSize={50}>
-            <PanelGroup
-              direction="horizontal"
-              autoSaveId="editor-horizontal"
-              className="panel-group-horizontal"
+      <Suspense fallback={<AppLoader />}>
+        <div className="app">
+          <Routes>
+            <Route path="/" element={<Navigate to="/playground" />} />
+            <Route
+              element={
+                <ProtectedRoute
+                  isAuthenticated={true}
+                  redirectPath="/register"
+                />
+              }
             >
-              <Panel minSize={20} defaultSize={33}>
-                <EditorPane language="html" value={html} onChange={setHtml} />
-              </Panel>
-              <ResizeHandle />
-              <Panel minSize={20} defaultSize={33}>
-                <EditorPane language="css" value={css} onChange={setCss} />
-              </Panel>
-              <ResizeHandle />
-
-              <Panel minSize={20} defaultSize={33}>
-                <EditorPane language="javascript" value={js} onChange={setJs} />
-              </Panel>
-            </PanelGroup>
-          </Panel>
-          <ResizeHandle />
-
-          <Panel defaultSize={50}>
-            <PreviewPane html={html} css={css} js={js} />
-          </Panel>
-        </PanelGroup>
-      </div>
+              <Route path="/playground" element={<Playground />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </div>
+      </Suspense>
     </ThemeProvider>
   );
 }
