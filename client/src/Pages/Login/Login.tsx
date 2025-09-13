@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as styles from "../../styles/formStyles";
 import {
   Box,
@@ -11,17 +11,16 @@ import {
   Input,
   FormControlLabel,
   Checkbox,
-  FormControl,
 } from "@mui/material";
 import Logo from "../../components/logo/Logo";
 
 const Login: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ username, password });
+    // console.log({ username, password });
     // TODO: call backend login API
   };
 

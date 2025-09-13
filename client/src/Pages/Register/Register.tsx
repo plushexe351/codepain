@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as styles from "../../styles/formStyles";
 import {
   Box,
@@ -17,13 +17,13 @@ import { CloudUploadTwoTone } from "@mui/icons-material";
 import Logo from "../../components/logo/Logo";
 
 const Register: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, username, password });
+    // console.log({ email, username, password });
     // TODO: call backend login API
   };
 
