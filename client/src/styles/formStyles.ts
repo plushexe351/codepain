@@ -9,8 +9,8 @@ export const authPageContainer: SxProps<Theme> = {
 };
 
 export const authPaperContainer: SxProps<Theme> = {
-    width: 500, 
-    maxWidth: "100%"
+  width: 500, 
+  maxWidth: "100%"
 }
 
 export const authPaper: SxProps<Theme> = {
@@ -27,6 +27,23 @@ export const formContainer: SxProps<Theme> = {
   flexDirection: "column",
   gap: 2,
 };
+
+export const imageUploadLabel: SxProps<Theme>={
+  textAlign: "center",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  flexDirection: "column",
+  gap: 1.5, 
+}
+export const imageUploadButton: SxProps<Theme>={
+  borderRadius:2
+}
+
+export const avatar:SxProps<Theme>={
+  height: 56, 
+  width: 56 
+}
 
 export const inputFieldContainer: SxProps<Theme> = {
   display: "flex",

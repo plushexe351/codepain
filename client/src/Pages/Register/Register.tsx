@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as styles from "../../styles/authStyles";
+import * as styles from "../../styles/formStyles";
 import {
   Box,
   Button,
@@ -88,22 +88,12 @@ const Register: React.FC = () => {
               style={{ display: "none" }}
             />
 
-            <InputLabel
-              htmlFor="upload-image"
-              sx={{
-                textAlign: "center",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-                gap: 1.5,
-              }}
-            >
-              <Avatar sx={{ height: 56, width: 56 }} />
+            <InputLabel htmlFor="upload-image" sx={styles.imageUploadLabel}>
+              <Avatar sx={styles.avatar} />
               <Button
                 variant="outlined"
                 component="span"
-                sx={{ borderRadius: 2 }}
+                sx={styles.imageUploadButton}
               >
                 <CloudUploadTwoTone sx={{ mr: 0.5 }} /> Upload Profile Image
               </Button>

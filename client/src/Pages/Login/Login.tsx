@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as styles from "../../styles/authStyles";
+import * as styles from "../../styles/formStyles";
 import {
   Box,
   Button,
@@ -69,7 +69,7 @@ const Login: React.FC = () => {
               fullWidth
               sx={styles.submitButton}
             >
-              Sign up
+              Sign in
             </Button>
           </Box>
 
