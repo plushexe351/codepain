@@ -10,6 +10,10 @@ import { validateEmail } from "../utils/validateEmail.js";
 const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
 
+  // basic input validation
+  if (!username?.trim() || !email?.trim() || !password?.trim())
+    return res.status(400).json({ message: "Enter your credentials" });
+
   //email validation
   const emailLowered = email.toLowerCase();
   if (!validateEmail(emailLowered))
@@ -30,6 +34,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // user login
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
+
+  //input validation
+  if (!username?.trim() || !password?.trim())
+    return res.status(400).json({ message: "Please enter your credentials" });
 
   //checkin if user is there
   const user = await User.findOne({ username });
