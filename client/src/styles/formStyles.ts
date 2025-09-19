@@ -6,11 +6,14 @@ export const authPageContainer: SxProps<Theme> = {
   alignItems: "center",
   justifyContent: "center",
   background: "radial-gradient(circle at center, var(--color-bg-dark), #121212)",
+  padding:"2rem 1rem",
+  overflowY: "auto",
 };
 
 export const authPaperContainer: SxProps<Theme> = {
   width: 500, 
-  maxWidth: "100%"
+  maxWidth: "100%",
+  margin:"auto",
 }
 
 export const authPaper: SxProps<Theme> = {
@@ -40,9 +43,28 @@ export const imageUploadButton: SxProps<Theme>={
   borderRadius:2
 }
 
+export const imageUnsetButton: SxProps<Theme>={
+  position: "absolute",
+  top: "0",
+  right: "0",
+  padding: ".1rem",
+  backgroundColor: "red",
+  height: "17px",
+  width: "17px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  borderRadius: "50%",
+  cursor:"pointer",
+}
+
 export const avatar:SxProps<Theme>={
   height: 56, 
-  width: 56 
+  width: 56,
+}
+
+export const previewProfileImage: SxProps<Theme>={
+  position:'relative',
 }
 
 export const inputFieldContainer: SxProps<Theme> = {
