@@ -13,15 +13,37 @@ import {
   Checkbox,
 } from "@mui/material";
 import Logo from "../../components/logo/Logo";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import { useToast } from "react-floatify";
+import { toastOptions } from "../../config/toastOptions";
 
 const Login: React.FC = () => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const { login } = useAuth();
+  const Navigate = useNavigate();
+  const { addToast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // console.log({ username, password });
-    // TODO: call backend login API
+    const form = new FormData(e.currentTarget);
+    const username = form.get("username") as string;
+    const password = form.get("password") as string;
+
+    try {
+      const user = await login(username, password);
+      Navigate("/playground");
+      addToast(`Welcome, ${user.username}`, {
+        type: "success",
+        ...toastOptions.toastContainer,
+      });
+      console.log("logged in", user);
+    } catch (err) {
+      console.error("Login failed:", err);
+      addToast(`${err}`, {
+        type: "error",
+        ...toastOptions.toastContainer,
+      });
+    }
   };
 
   return (

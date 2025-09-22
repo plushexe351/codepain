@@ -1,22 +1,23 @@
-import { Backdrop } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import React from "react";
 import Logo from "../logo/Logo";
 
 const AppLoader: React.FC = () => {
   return (
-    <Backdrop
-      open
+    <Box
       sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        background: "black",
-        backdropFilter: "blur(10px)",
+        minHeight: "40vh",
         display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         flexDirection: "column",
         gap: 2,
+        bgcolor: "transparent",
       }}
     >
       <Logo />
-    </Backdrop>
+      <CircularProgress />
+    </Box>
   );
 };
 
