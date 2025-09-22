@@ -26,6 +26,7 @@ const Register: React.FC = () => {
   const Navigate = useNavigate();
   const { addToast } = useToast();
 
+  // Preview uploaded profile image
   const [preview, setPreview] = useState<string | undefined>(undefined);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,8 +147,8 @@ const Register: React.FC = () => {
                   component="span"
                   sx={styles.imageUploadButton}
                 >
-                  <CloudUploadIcon style={{ marginRight: ".5rem" }} /> Upload
-                  Profile Image
+                  <CloudUploadIcon size={17} style={{ marginRight: ".5rem" }} />{" "}
+                  Upload Profile Image
                 </Button>
               </InputLabel>
             </Box>
