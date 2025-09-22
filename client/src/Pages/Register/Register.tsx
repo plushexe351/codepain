@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import * as styles from "../../styles/formStyles";
 import {
   Box,
@@ -19,11 +19,22 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import { useToast } from "react-floatify";
 import { toastOptions } from "../../config/toastOptions";
+import { X } from "lucide-react";
 
 const Register: React.FC = () => {
   const { register } = useAuth();
   const Navigate = useNavigate();
   const { addToast } = useToast();
+
+  const [preview, setPreview] = useState<string | undefined>(undefined);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      setPreview(url);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -107,24 +118,39 @@ const Register: React.FC = () => {
               name="upload-image"
               id="upload-image"
               accept="image/*"
+              onChange={handleFileChange}
               style={{ display: "none" }}
             />
-
-            <InputLabel htmlFor="upload-image" sx={styles.imageUploadLabel}>
-              <Avatar sx={styles.avatar} />
-              <Button
-                variant="outlined"
-                component="span"
-                sx={styles.imageUploadButton}
-              >
-                <CloudUploadIcon
-                  size={17}
-                  className="icon"
-                  style={{ marginRight: ".5rem" }}
-                />{" "}
-                Upload Profile Image
-              </Button>
-            </InputLabel>
+            <Box sx={styles.imageUploadLabel}>
+              <Box sx={styles.previewProfileImage}>
+                <Avatar
+                  sx={styles.avatar}
+                  src={preview}
+                  onClick={(e) => e.stopPropagation()}
+                />
+                {preview && (
+                  <Box
+                    sx={styles.imageUnsetButton}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setPreview(undefined);
+                    }}
+                  >
+                    <X size={17} className="btn-unset-image" />
+                  </Box>
+                )}
+              </Box>
+              <InputLabel htmlFor="upload-image">
+                <Button
+                  variant="outlined"
+                  component="span"
+                  sx={styles.imageUploadButton}
+                >
+                  <CloudUploadIcon style={{ marginRight: ".5rem" }} /> Upload
+                  Profile Image
+                </Button>
+              </InputLabel>
+            </Box>
             <FormControlLabel control={<Checkbox />} label="Remember me" />
             <Button
               type="submit"
