@@ -53,7 +53,9 @@ const loginUser = asyncHandler(async (req, res) => {
 const getUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select("-password");
   if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
+  res.json({
+    user: { id: user._id, username: user.username, email: user.email },
+  });
 });
 //----------------------------------------------------------------------------------------------------------------
 
@@ -63,7 +65,9 @@ const getUserByUsername = asyncHandler(async (req, res) => {
     "-password"
   );
   if (!user) return res.status(404).json({ message: "User not found" });
-  res.json(user);
+  res.json({
+    user: { id: user._id, username: user.username, email: user.email },
+  });
 });
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -72,7 +76,7 @@ const userLogout = asyncHandler((req, res) => {
   res.cookie("jwt", "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "development" ? "lax" : "strict",
+    sameSite: "lax",
     expires: new Date(0),
   });
   res.status(200).json({ message: "User has been logged out" });
