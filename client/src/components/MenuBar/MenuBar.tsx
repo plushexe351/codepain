@@ -7,7 +7,6 @@ import { useAuth } from "../../context/AuthContext";
 import { useToast } from "react-floatify";
 import { toastOptions } from "../../config/toastOptions";
 import { LogOutIcon } from "lucide-react";
-import { useNavigate } from "react-router";
 
 interface Props {
   html: string;
