@@ -9,8 +9,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { ToastProvider } from "react-floatify";
 import "react-floatify/dist/react-floatify.css";
 import { toastOptions } from "./config/toastOptions";
-
 const Playground = lazy(() => import("./Pages/Playground/Playground"));
+// import Login from "./Pages/Login/Login";
+// import Register from "./Pages/Register/Register";
 const Login = lazy(() => import("./Pages/Login/Login"));
 const Register = lazy(() => import("./Pages/Register/Register"));
 

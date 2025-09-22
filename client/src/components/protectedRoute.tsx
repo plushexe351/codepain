@@ -15,7 +15,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     return <Logo />;
   }
   if (!user) {
-    return <Navigate to={redirectPath} replace />;
+    return <Navigate to={redirectPath} />;
   }
   return <Outlet />;
 };

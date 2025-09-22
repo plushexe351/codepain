@@ -13,7 +13,7 @@ import {
   Checkbox,
   Avatar,
 } from "@mui/material";
-import { CloudUploadTwoTone } from "@mui/icons-material";
+import { CloudUploadIcon } from "lucide-react";
 import Logo from "../../components/logo/Logo";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
@@ -117,7 +117,12 @@ const Register: React.FC = () => {
                 component="span"
                 sx={styles.imageUploadButton}
               >
-                <CloudUploadTwoTone sx={{ mr: 0.5 }} /> Upload Profile Image
+                <CloudUploadIcon
+                  size={17}
+                  className="icon"
+                  style={{ marginRight: ".5rem" }}
+                />{" "}
+                Upload Profile Image
               </Button>
             </InputLabel>
             <FormControlLabel control={<Checkbox />} label="Remember me" />

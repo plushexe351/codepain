@@ -2,7 +2,8 @@ import type React from "react";
 import ExportButton from "../ExportButton/ExportButton";
 import logo from "../../assets/logo.png";
 import "./MenuBar.scss";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, CircularProgress } from "@mui/material";
+import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useToast } from "react-floatify";
 import { toastOptions } from "../../config/toastOptions";
@@ -17,7 +18,9 @@ interface Props {
 const MenuBar: React.FC<Props> = ({ html, css, js }) => {
   const { logout } = useAuth();
   const { addToast } = useToast();
+  const [loggingOut, setLoggingOut] = useState(false);
   const handleLogout = async () => {
+    setLoggingOut(true);
     try {
       await logout();
       console.log("logged out");
@@ -25,10 +28,14 @@ const MenuBar: React.FC<Props> = ({ html, css, js }) => {
         type: "success",
         ...toastOptions.toastContainer,
       });
-    } catch (err: any) {
-      console.log(err);
-      addToast(`${err}`);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : String(err);
+      console.log(message);
+      addToast(message);
+    } finally {
+      setLoggingOut(false);
     }
+    console.log("should not blank screen");
   };
   return (
     <div className="menubar">
@@ -45,8 +52,12 @@ const MenuBar: React.FC<Props> = ({ html, css, js }) => {
         Code<span>pain</span>
       </Typography>
       {(html || css || js) && <ExportButton html={html} css={css} js={js} />}
-      <Button onClick={handleLogout}>
-        <LogOutIcon size={20} />
+      <Button onClick={handleLogout} disabled={loggingOut}>
+        {loggingOut ? (
+          <CircularProgress size={20} color="inherit" />
+        ) : (
+          <LogOutIcon size={20} />
+        )}
       </Button>
     </div>
   );
