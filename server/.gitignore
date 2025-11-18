@@ -1,45 +1,29 @@
-# dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# Python cache
+__pycache__/
+*.py[cod]
 
-# environment variables
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables / Secrets
 .env
-.env.*.local
 
-# production
-/dist
-/build
-/.next
-/.nuxt
-/out
+# SQLite DB files
+*.db
 
-# system files
+# Local settings / OS garbage
 .DS_Store
-Thumbs.db
-
-# logs
-logs
-*.log
-*.log.*
-
-# runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# coverage
-coverage/
-*.lcov
-
-# IDE/editor files
-.vscode/
-.idea/
 *.swp
 *.swo
+*.log
 
-# misc
-*.tgz
+# Dependency / build stuff
+uv.lock
+dist/
+build/
+*.egg-info/
+
+# IDE/editor trash
+.vscode/
+.idea/
