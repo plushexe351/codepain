@@ -1,6 +1,7 @@
 from src.database import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
+from datetime import timedelta, datetime, timezone
 
 
 class UserModel(Base):
@@ -26,3 +27,12 @@ class PenModel(Base):
     private = Column(Boolean, nullable=False, default=False)
 
     owner = relationship('UserModel', back_populates='pens')
+
+class RefreshToken(Base):
+    __tablename__ = 'refresh_token'
+
+    id = Column(Integer, primary_key=True, index=True)
+    token = Column(String, unique=True)
+    user_id = Column(Integer, ForeignKey='users.id')
+    expires_at = Column(DateTime, default=timedelta(days=7))
+    
